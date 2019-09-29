@@ -1,0 +1,59 @@
+.jokslist {
+
+    width: 80%;
+    height: auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+    .jokslist-header {
+        width: 100%;
+        background: #333;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 3px;
+
+        h1 {
+            color: white;
+            font-weight: 300;
+            margin-right: auto;
+            margin-left: 5%;
+            letter-spacing: 1px;
+
+
+            span {
+                font-weight: 600
+            }
+        }
+
+        button {
+            margin-right: 30%;
+            outline: none;
+            background: #fff;
+            color: #333;
+            padding: 5px;
+            border: none;
+            border-radius: 4px;
+            min-width: 80px;
+            height: 30px;
+            font-size: 16px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+    }
+
+    .joklist-body {
+        width: 94%;
+        background: rgb(240, 240, 240);
+        border-bottom-right-radius: 3px;
+        border-bottom-left-radius: 3px;
+        padding: 10px 10px;
+
+    }
+}
