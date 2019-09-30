@@ -15,6 +15,8 @@ class JoksList extends Component {
       joks: JSON.parse(window.localStorage.getItem("joks") || "[]")
     };
 
+    this.seenJoks = new Set(this.state.joks.map(j => j.joke));
+
     this.manageVote = this.manageVote.bind(this);
     this.getNewJoks = this.getNewJoks.bind(this);
     this.handlClick = this.handlClick.bind(this);
@@ -33,8 +35,9 @@ class JoksList extends Component {
       let jok = await axios.get("https://icanhazdadjoke.com/", {
         headers: { Accept: "application/json" }
       });
-
-      joks.push({ ...jok.data, vote: 0 });
+      let id = jok.data.id;
+      let newJok = jok.data.joke;
+      if (!this.seenJoks.has(newJok)) joks.push({ id, joke: newJok, vote: 0 });
     }
 
     this.setState(
@@ -61,8 +64,11 @@ class JoksList extends Component {
   handlClick() {
     this.getNewJoks();
   }
+
   render() {
-    let joks = this.state.joks.map(j => (
+    let joksSorted = this.state.joks.sort((a, b) => b.vote - a.vote);
+
+    let joks = joksSorted.map(j => (
       <Jok
         upVote={() => this.manageVote(j.id, 1)}
         downVote={() => this.manageVote(j.id, -1)}
